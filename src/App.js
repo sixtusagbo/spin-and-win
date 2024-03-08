@@ -1,39 +1,28 @@
-import { useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import { prizesDim } from './config';
+import CoreLayout from './layouts/CoreLayout';
+import Spin from './pages/Spin';
+import PreAuthLayout from './layouts/PreAuthLayout';
+import Register from './pages/Register';
+import Login from './pages/Login';
+import NotFound from './pages/NotFound';
+import PersistLogin from './layouts/PersistLogin';
 
 function App() {
-  const [value, setValue] = useState(Math.ceil(Math.random() * 3600));
-
-  const handleSpin = () => {
-    const wheel = document.querySelector('.wheel');
-
-    wheel.style.transform = `rotate(${value}deg)`;
-    setValue(Math.ceil(Math.random() * 3600));
-  };
-
   return (
-    <div className="wrapper">
-      <div className="container">
-        <div className="spin-btn" onClick={handleSpin}>
-          Spin
-        </div>
-        <div className="wheel">
-          {prizesDim.map((prize, i) => (
-            <div
-              key={i}
-              className="prize"
-              style={{
-                '--index': i + 1,
-                '--bgColor': prize.bgColor,
-                clipPath: prize.isWin ? 'var(--clip-sm)' : 'var(--clip-lg)',
-              }}>
-              <img src={prize.image} alt="spin-entry" />
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
+    <Routes>
+      <Route element={<PersistLogin />}>
+        <Route element={<CoreLayout />}>
+          <Route path="/" element={<Spin />} />
+        </Route>
+        <Route element={<PreAuthLayout />}>
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+        </Route>
+      </Route>
+
+      <Route path="*" element={<NotFound />}></Route>
+    </Routes>
   );
 }
 
