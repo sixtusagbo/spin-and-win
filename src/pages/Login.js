@@ -78,7 +78,8 @@ const Login = () => {
         console.log(response);
         const accessToken = response.data?.token;
         const userId = response.data?.id;
-        const auth = { accessToken, userId };
+        const spins = response.data?.spins;
+        const auth = { accessToken, userId, spins };
         if (remember) {
           localStorage.setItem('ziox', JSON.stringify(auth));
         }

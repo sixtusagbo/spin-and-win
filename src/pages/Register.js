@@ -79,7 +79,8 @@ const Register = () => {
         console.log(response);
         const accessToken = response.data?.token;
         const userId = response.data?.id;
-        const auth = { accessToken, userId };
+        const spins = response.data?.spins;
+        const auth = { accessToken, userId, spins };
         localStorage.setItem('remember', true);
         localStorage.setItem('ziox', JSON.stringify(auth));
         setAuth(auth);
