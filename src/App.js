@@ -23,7 +23,11 @@ function App() {
             <div
               key={i}
               className="prize"
-              style={{ '--index': i + 1, '--bgColor': prize.bgColor }}>
+              style={{
+                '--index': i + 1,
+                '--bgColor': prize.bgColor,
+                clipPath: prize.isWin ? 'var(--clip-sm)' : 'var(--clip-lg)',
+              }}>
               <img src={prize.image} alt="spin-entry" />
             </div>
           ))}

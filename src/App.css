@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700,800,900&display=swap');
 
+:root {
+  --clip-lg: polygon(0 0, 55% 0, 100% 100%, 0 55%);
+  --clip-sm: polygon(0 0, 30% 0, 100% 100%, 0 30%);
+}
+
 .wrapper * {
   margin: 0;
   padding: 0;
@@ -75,7 +80,6 @@
   background: var(--bgColor);
   transform-origin: bottom right;
   transform: rotate(calc(45deg * var(--index)));
-  clip-path: polygon(0 0, 55% 0, 100% 100%, 0 55%);
   display: flex;
   justify-content: center;
   align-items: center;
