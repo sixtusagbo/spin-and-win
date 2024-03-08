@@ -75,7 +75,6 @@ const Login = () => {
           })
         );
 
-        console.log(response);
         const accessToken = response.data?.token;
         const userId = response.data?.id;
         const spins = response.data?.spins;
