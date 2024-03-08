@@ -9,7 +9,7 @@ function App() {
     const wheel = document.querySelector('.wheel');
 
     wheel.style.transform = `rotate(${value}deg)`;
-    setValue((prevValue) => (prevValue += Math.ceil(Math.random() * 3600)));
+    setValue(Math.ceil(Math.random() * 3600));
   };
 
   return (
@@ -24,7 +24,7 @@ function App() {
               key={i}
               className="prize"
               style={{ '--index': i + 1, '--bgColor': prize.bgColor }}>
-              <span>{prize.value}</span>
+              <img src={prize.image} alt="spin-entry" />
             </div>
           ))}
         </div>

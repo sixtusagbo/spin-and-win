@@ -103,6 +103,17 @@
   font-size: .85em;
 }
 
+.container .wheel .prize img {
+  position: relative;
+  transform: rotate(-45deg);
+  box-shadow: 3px 5px 2px rgba(0, 0, 0, .15);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: contain;
+  background: #fff;
+}
+
 @media (max-width: 600px) {
   .container {
     width: 320px;
