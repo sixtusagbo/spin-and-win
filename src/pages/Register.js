@@ -91,7 +91,11 @@ const Register = () => {
         setPassword('');
       } catch (err) {
         console.error(err);
-        alert(err.toString());
+        alert(
+          err?.response?.data?.error
+            ? err?.response?.data?.error
+            : err.toString()
+        );
       }
     } else {
       alert('Please fill in all fields');
