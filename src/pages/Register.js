@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
+import axios from '../api/axios';
+import useAuth from '../hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
   display: flex;
@@ -51,14 +54,48 @@ const Button = styled.button`
   }
 `;
 
-const Login = () => {
+const Register = () => {
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const { setAuth } = useAuth();
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // handle login logic here
+
+    if (name && username && password) {
+      // Make signup request to backend api
+      try {
+        const response = await axios.post(
+          '/users/create',
+          JSON.stringify({
+            name: name,
+            username: username,
+            password: password,
+          })
+        );
+
+        console.log(response);
+        const accessToken = response.data?.token;
+        const userId = response.data?.id;
+        const auth = { accessToken, userId };
+        localStorage.setItem('remember', true);
+        localStorage.setItem('ziox', JSON.stringify(auth));
+        setAuth(auth);
+        navigate('/', { replace: true });
+
+        // Clear the input fields
+        setName('');
+        setUsername('');
+        setPassword('');
+      } catch (err) {
+        console.error(err);
+        alert(err.toString());
+      }
+    } else {
+      alert('Please fill in all fields');
+    }
   };
 
   return (
@@ -70,19 +107,23 @@ const Login = () => {
           placeholder="Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          required
         />
         <Input
           type="text"
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          required
         />
         <Input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
+
         <Button type="submit">Continue</Button>
         <p>
           Already have an account? <a href="/login">Sign In</a>
@@ -92,4 +133,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

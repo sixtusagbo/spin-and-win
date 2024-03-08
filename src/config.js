@@ -1,5 +1,3 @@
-import styled from 'styled-components';
-
 export const prizesDim = [
   {
     bgColor: '#FFB428',
@@ -58,53 +56,3 @@ export const prizesDim = [
     retry: false,
   }, // Magenta
 ];
-
-export const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  flex-direction: column;
-`;
-
-export const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 0 0 10px #ccc;
-`;
-
-export const Input = styled.input`
-  margin-bottom: 10px;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  width: 100%;
-  box-sizing: border-box;
-  font-size: 16px;
-  outline: none;
-  transition: 0.3s;
-  &:focus {
-    border-color: #000;
-  }
-`;
-
-export const Button = styled.button`
-  cursor: pointer;
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
-  background-color: #000;
-  color: #fff;
-  font-size: 16px;
-  outline: none;
-  transition: 0.3s;
-  &:hover {
-    background-color: #333;
-  }
-`;
